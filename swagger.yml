@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Elenco dei servizi a disposizione della libreria per la Gestione Corso
+  version: 1.0.0
+paths:
+  /corso:
+    get:
+      operationId: findAll
+      summary: Return all the Corso of the table
+      responses:
+        '200':
+          description: List whit all the available Corso of the table
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CorsoOutputDTO'
+components:
+  schemas:
+    CorsoInputDTO:
+      type: object
+      properties:
+        nome:
+          type: string
+        lezioni:
+          type: integer
+        docenteID:
+          type: integer
+        studenteID:
+          type: integer
+        cittaID:
+          type: integer
+    CorsoOutputDTO:
+      type: object
+      properties:
+        nome:
+          type: string
+        lezioni:
+          type: integer
+        docenteID:
+          type: integer
+        studenteID:
+          type: integer
+        cittaID:
+          type: integer
+
+
