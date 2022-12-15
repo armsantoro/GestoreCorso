@@ -1,6 +1,6 @@
-package com.example.repository;
+package dst.corso.repository;
 
-import com.example.model.Corso;
+import dst.corso.model.Corso;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CorsoRepository extends JpaRepository<Corso, Long> {

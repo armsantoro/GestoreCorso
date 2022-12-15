@@ -1,4 +1,4 @@
-package com.example.model;
+package dst.corso.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
