@@ -4,6 +4,7 @@ import dst.corso.model.Corso;
 import dst.corso.model.CorsoInputDTO;
 import dst.corso.model.CorsoOutputDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public interface CorsoMapper {
     CorsoMapper INSTANCE = Mappers.getMapper(CorsoMapper.class);
     CorsoOutputDTO corsoToCorsoDTO(Corso c);
-    List<CorsoOutputDTO> corsoInputDtoToCorsoDTO(CorsoInputDTO cDto);
+    List<CorsoOutputDTO> corsoInputDtoToCorsoDTO(List<Corso> c);
+
 
 }

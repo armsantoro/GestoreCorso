@@ -16,6 +16,154 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CorsoOutputDTO'
+    post:
+      operationId: addCorso
+      description: Add the Cours
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorsoInputDTO'
+      responses:
+        '200':
+          description: The requested Person
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorsoOutputDTO'
+        '404':
+          description: Persona not added
+  /corso/{id}:
+    get:
+      operationId: findById
+      description: Return a single cours.
+      parameters:
+        - name: id
+          in: path
+          description: Return a single cours
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Operation successfully complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorsoOutputDTO'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Cours with the requested ID not found
+    put:
+      operationId: updateCorso
+      description: update the details of the table Corso
+      parameters:
+        - name: id
+          in: path
+          description: Id of the cours to modify
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: New details of the Cours to be modified
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorsoInputDTO'
+      responses:
+        '200':
+          description: Cours successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorsoOutputDTO'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Cours with the requested ID not found
+    delete:
+      operationId: deleteById
+      description: Delete the Cours with the specified ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the Cours to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '201':
+          description: Cours successfully removed
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Cours with the requested ID not found
+
+  /corso/{id}/addStudenteToCorso:
+    put:
+      operationId: addStudToCorso
+      parameters:
+        - name: id
+          in: path
+          description: Aggiungi uno studente al corso
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudenteInputDTO'
+      responses:
+        '200':
+          description: Studente aggiunto al corso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudenteOutputDTO'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Persona not found
+  /corso/{id}/removeStudenteToCorso:
+    delete:
+      operationId: removeStudToCorso
+      parameters:
+        - name: id
+          in: path
+          description: Rimuovi uno studente dal corso
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudenteInputDTO'
+      responses:
+        '200':
+          description: Studente rimosso dal corso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudenteOutputDTO'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Persona not found
+
+
 components:
   schemas:
     CorsoInputDTO:
@@ -44,5 +192,31 @@ components:
           type: integer
         cittaID:
           type: integer
+    AssociazioneCSDTO:
+      type: object
+      properties:
+        nome:
+          type: string
+        studenteID:
+          type: integer
+    StudenteInputDTO:
+      type: object
+      properties:
+        persona:
+          type: integer
+          format: int64
+        corso:
+          type: integer
+          format: int64
+    StudenteOutputDTO:
+      type: object
+      properties:
+        persona:
+          type: integer
+          format: int64
+        corso:
+          type: integer
+          format: int64
+
 
 

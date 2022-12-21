@@ -1,7 +1,10 @@
 package dst.corso.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
+import dst.corso.model.Studente;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,10 +18,10 @@ public class Corso {
     private String nome;
     @Column(name = "lezioni", nullable = false)
     private int lezioni;
-    @Column(name = "docenteID", nullable = false)
-    private long docenteID;
-    @Column(name = "studenteID", nullable = false)
-    private long studenteID;
+    @OneToOne
+    private Docente docenteID;
+    @OneToMany
+    private List<Studente> studenteID;
     @Column(name = "cittaID", nullable = false)
     private long cittaID;
 }
